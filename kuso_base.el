@@ -70,6 +70,16 @@
 (global-set-key (kbd "C-\-") 'hs-toggle-hiding)
 (global-set-key (kbd "C-\\") 'toggle-selective-display)
 
+
+;; Setup flymake
+(require 'flymake)
+(add-hook 'find-file-hook 'flymake-find-file-hook)
+
+;; flymake shortkeys
+(global-set-key (kbd "\C-x a") 'flymake-display-err-menu-for-current-line)
+(global-set-key (kbd "\C-x p") 'flymake-goto-next-error)
+
+
 ;; Load abou submenu
 (load-file (concat default-directory "kuso_version.el"))
 (load-file (concat default-directory "kuso_about.el"))
