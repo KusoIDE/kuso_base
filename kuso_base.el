@@ -13,6 +13,7 @@
 ;;
 ;;    You should have received a copy of the GNU General Public License
 ;;    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+(message "Initializing 'kuso-base' plugin.")
 
 ;; Autocomplete configurations
 (require 'auto-complete-config)
@@ -29,14 +30,6 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
-
-;; theme configuration
-;; TODO: create a default theme so user can easily change it
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-tomorrow-night-eighties)
-))
 
 ;; ac-dabbrev configuratio
 (require 'ac-dabbrev)
@@ -80,7 +73,19 @@
 (global-set-key (kbd "\C-x p") 'flymake-goto-next-error)
 
 
+;; theme configuration
+;; TODO: create a default theme so user can easily change it
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-tomorrow-night) ;;-eighties)
+))
+
+
 ;; Load abou submenu
 (load-file (concat default-directory "kuso_version.el"))
 (load-file (concat default-directory "kuso_about.el"))
 (load-file (concat default-directory "kuso_dpaste.el"))
+
+
+(provide 'kuso-base)
