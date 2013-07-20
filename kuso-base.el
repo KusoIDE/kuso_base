@@ -83,9 +83,9 @@
 
 
 ;; Load abou submenu
-(load-file (concat default-directory "kuso_version.el"))
-(load-file (concat default-directory "kuso_about.el"))
-(load-file (concat default-directory "kuso_dpaste.el"))
+(load-file (concat default-directory "kuso-version.el"))
+;(load-file (concat default-directory "kuso-about.el"))
+;(load-file (concat default-directory "kuso-dpaste.el"))
 
 
 (provide 'kuso-base)
