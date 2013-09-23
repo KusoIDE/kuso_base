@@ -20,6 +20,10 @@
 (add-to-list 'ac-dictionary-directories (concat default-directory "../ac-dict"))
 (ac-config-default)
 
+;; Remove return key from completion map
+(define-key ac-completing-map "\r" nil)
+(define-key ac-completing-map [return] nil)
+
 (global-auto-complete-mode t)
 
 ;; Tramp configuration
@@ -27,7 +31,6 @@
 
 ;; Yasnippet configurations
 (add-to-list 'load-path (concat default-directory "../yasnippet"))
-(require 'yasnippet)
 (yas-global-mode 1)
 
 
@@ -36,7 +39,6 @@
 (setq ac-sources
      (list ac-source-dabbrev))
 (global-set-key (kbd "<backtab>") 'dabbrev-expand)
-
 
 ;; Global configurations
 (tool-bar-mode -1)
@@ -65,7 +67,6 @@
 
 
 ;; Setup flymake
-(require 'flymake)
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;; flymake shortkeys
