@@ -25,6 +25,7 @@ Credits:
 \tSameer Rahmani (lxsameer)
 \tBehnam Ahmad Khan Beigi (b3hnam)
 \tNima Nazari (niman)
+\tDanial Parsi (intuxticated)
 
 "
   "About Kuso IDE")

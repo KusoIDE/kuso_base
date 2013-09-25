@@ -48,6 +48,7 @@
 (global-linum-mode)
 (menu-bar-mode -1)
 (show-paren-mode t)
+(autopair-mode t)
 
 (setq-default indent-tabs-mode nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -83,10 +84,10 @@
 ))
 
 
-;; Load abou submenu
+;; Load about submenu
 (load-file (concat default-directory "kuso-version.el"))
-;(load-file (concat default-directory "kuso-about.el"))
-;(load-file (concat default-directory "kuso-dpaste.el"))
+(load-file (concat default-directory "kuso-about.el"))
+(load-file (concat default-directory "kuso-dpaste.el"))
 
 
 (provide 'kuso-base)
