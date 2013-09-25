@@ -66,6 +66,8 @@
 (global-set-key (kbd "C-\-") 'hs-toggle-hiding)
 (global-set-key (kbd "C-\\") 'toggle-selective-display)
 
+;; sr-speedbar configuration
+(global-set-key (kbd "\C-c ]") 'sr-speedbar-toggle)
 
 ;; Setup flymake
 (add-hook 'find-file-hook 'flymake-find-file-hook)
