@@ -48,7 +48,7 @@
 (global-linum-mode)
 (menu-bar-mode -1)
 (show-paren-mode t)
-(autopair-mode t)
+(autopair-global-mode t)
 
 (setq-default indent-tabs-mode nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
