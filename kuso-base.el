@@ -77,6 +77,9 @@
 (global-set-key (kbd "\C-x a") 'flymake-display-err-menu-for-current-line)
 (global-set-key (kbd "\C-x p") 'flymake-goto-next-error)
 
+;; Basic Key bindings
+(global-set-key (kbd "\C-c m") 'menu-bar-mode)
+
 
 ;; theme configuration
 ;; TODO: create a default theme so user can easily change it

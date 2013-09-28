@@ -52,3 +52,5 @@ Credits:
 )
 
 (define-key-after global-map [menu-bar help-menu about-kuso] '("About KusoIDE" . about-kuso-f) 'about-emacs)
+(define-key-after global-map [menu-bar help-menu kuso-update-everything] '("Update Kuso IDE (everything)" . el-get-update-all) 'getting-new-versions)
+(define-key-after global-map [menu-bar help-menu kuso-update] '("Update Kuso IDE" . el-get-update) 'kuso-update-everything)
