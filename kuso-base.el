@@ -89,6 +89,9 @@
      (color-theme-tomorrow-night) ;;-eighties)
 ))
 
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 
 ;; Load about submenu
 (load-file (concat default-directory "kuso-version.el"))
