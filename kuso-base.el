@@ -93,6 +93,11 @@
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 
+;; multiple cursor configurations
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-SPC ") 'mc/mark-all-like-this)
+
 ;; Load about submenu
 (load-file (concat default-directory "kuso-version.el"))
 (load-file (concat default-directory "kuso-about.el"))
