@@ -31,6 +31,8 @@
 
 ;; Yasnippet configurations
 (add-to-list 'load-path (concat default-directory "../yasnippet"))
+(cons "../snippets" yas-snippet-dirs)
+;(yas/load-directory "../snippets")
 (yas-global-mode 1)
 
 
@@ -98,10 +100,14 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-SPC ") 'mc/mark-all-like-this)
 
+;; expand-region
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 ;; Load about submenu
 (load-file (concat default-directory "kuso-version.el"))
 (load-file (concat default-directory "kuso-about.el"))
 (load-file (concat default-directory "kuso-dpaste.el"))
+(load-file (concat default-directory "session-management.el"))
 
 
 (provide 'kuso-base)
