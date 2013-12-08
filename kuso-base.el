@@ -42,20 +42,6 @@
      (list ac-source-dabbrev))
 (global-set-key (kbd "<backtab>") 'dabbrev-expand)
 
-;; Global configurations
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(setq x-select-enable-clipboard t)
-(column-number-mode t)
-(global-linum-mode)
-(menu-bar-mode -1)
-(show-paren-mode t)
-(autopair-global-mode t)
-(cua-selection-mode t)
-
-(setq-default indent-tabs-mode nil)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 
 ;; IDO configurations
 (ido-mode t)
@@ -91,9 +77,9 @@
      (color-theme-tomorrow-night) ;;-eighties)
 ))
 
-(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+;(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+;(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+;(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 
 ;; multiple cursor configurations
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -102,6 +88,40 @@
 
 ;; expand-region
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+
+;; Enhancements ---------------------------------------------
+;; Global configurations
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(setq x-select-enable-clipboard t)
+(column-number-mode t)
+(global-linum-mode)
+(menu-bar-mode -1)
+(show-paren-mode t)
+(autopair-global-mode t)
+(cua-selection-mode t)
+
+(setq-default indent-tabs-mode nil)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Backup files
+;; Put them in one nice place if possible
+(if (file-directory-p "~/.backup")
+    (setq backup-directory-alist '(("." . "~/.backup")))
+  (make-directory "~/.backup"))
+
+(setq backup-by-copying t    ; Don't delink hardlinks
+      delete-old-versions t  ; Clean up the backups
+      version-control t      ; Use version numbers on backups,
+      kept-new-versions 3    ; keep some new versions
+      kept-old-versions 2)   ; and some old ones, too
+
+;; get rid of yes-or-no questions - y or n is enough
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+
+;; ----------------------------------------------------------
 
 ;; Load about submenu
 (load-file (concat default-directory "kuso-version.el"))
