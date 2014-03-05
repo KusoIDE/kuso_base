@@ -23,17 +23,17 @@
 ;; This variable copied from an other dpaste.el at
 ;; https://github.com/gregnewman/dpaste.el/blob/master/dpaste.el
 (defvar dpaste-support-types '((css-mode . "Css")
-                                       (diff-mode . "Diff")
-                                       (haskell-mode . "Haskell")
-                                       (html-mode . "DjangoTemplate")
-                                       (javascript-mode . "JScript")
-                                       (js2-mode . "JScript")
-                                       (python-mode . "Python")
-                                       (inferior-python-mode . "PythonConsole")
-                                       (ruby-mode . "Ruby")
-                                       (sql-mode . "Sql")
-                                       (sh-mode . "Bash")
-                                       (xml-mode . "Xml")))
+                               (diff-mode . "Diff")
+                               (haskell-mode . "Haskell")
+                               (html-mode . "DjangoTemplate")
+                               (javascript-mode . "JScript")
+                               (js2-mode . "JScript")
+                               (python-mode . "Python")
+                               (inferior-python-mode . "PythonConsole")
+                               (ruby-mode . "Ruby")
+                               (sql-mode . "Sql")
+                               (sh-mode . "Bash")
+                               (xml-mode . "Xml")))
 ;; -------------------------------------------------------------------
 ;; Hooks
 ;; -------------------------------------------------------------------
@@ -57,9 +57,9 @@
 ;; Keymaps
 ;; ---------------------------------------------------------------------
 (defvar kuso-dpaste-map (make-sparse-keymap)
- "Default keymap for Kuso dpaste minor mode that hold the global key
+  "Default keymap for Kuso dpaste minor mode that hold the global key
 binding for Kuso IDE dpaste plugin"
-)
+  )
 
 ;; ---------------------------------------------------------------------
 ;; Custom Variables
@@ -90,11 +90,11 @@ binding for Kuso IDE dpaste plugin"
 
 (defun destruct-menus ()
   "Remove menus from menubar"
-    (global-unset-key [menu-bar edit sep1])
-    (global-unset-key [menu-bar edit sep2])
-    (global-unset-key [menu-bar edit dpastereg])
-    (global-unset-key [menu-bar edit dpastebuf])
-    )
+  (global-unset-key [menu-bar edit sep1])
+  (global-unset-key [menu-bar edit sep2])
+  (global-unset-key [menu-bar edit dpastereg])
+  (global-unset-key [menu-bar edit dpastebuf])
+  )
 
 (defun get-region-text ()
   "Retrive the region (selected) text."
@@ -110,7 +110,7 @@ binding for Kuso IDE dpaste plugin"
       )
     (setq text (buffer-substring-no-properties start end))
     )
-)
+  )
 
 
 (defun dpaste-region ()
@@ -127,11 +127,11 @@ binding for Kuso IDE dpaste plugin"
     (with-temp-buffer
       (insert text)
       (shell-command-on-region (point-min) (point-max) (concat "curl -si" " -F 'content=<-'"
-					       " -A 'Kuso dpaste plugin'"
-					     " -F 'language=" type "'"
-					     " -F 'title=" title "'"
-					     " -F 'poster=" poster "'"
-					     " http://dpaste.com/api/v1/") (buffer-name))
+                                                               " -A 'Kuso dpaste plugin'"
+                                                               " -F 'language=" type "'"
+                                                               " -F 'title=" title "'"
+                                                               " -F 'poster=" poster "'"
+                                                               " http://dpaste.com/api/v1/") (buffer-name))
 
 
 
@@ -171,7 +171,7 @@ binding for Kuso IDE dpaste plugin"
       (kill-new (buffer-substring a b))
       )
     )
-)
+  )
 
 ;; ----------------------------------------------------------------------
 ;; Minor Modes

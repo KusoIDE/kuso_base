@@ -31,6 +31,12 @@
 
 ;; Yasnippet configurations
 (add-to-list 'load-path (concat default-directory "../yasnippet"))
+
+(if (eq (file-exists-p (concat default-directory "../snippets")) nil)
+    (make-directory (concat default-directory "../snippets"))
+  )
+
+(setq yas-snippet-dirs (concat default-directory "../snippets"))
 (cons "../snippets" yas-snippet-dirs)
 ;(yas/load-directory "../snippets")
 (yas-global-mode 1)
