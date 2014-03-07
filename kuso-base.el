@@ -41,6 +41,8 @@
 ;(yas/load-directory "../snippets")
 (yas-global-mode 1)
 
+;; highlight line mode
+(hl-line-toggle-when-idle)
 
 ;; ac-dabbrev configuratio
 (require 'ac-dabbrev)
