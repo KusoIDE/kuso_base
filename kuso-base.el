@@ -38,21 +38,35 @@
 
 (setq yas-snippet-dirs (concat default-directory "../snippets"))
 (cons "../snippets" yas-snippet-dirs)
-;(yas/load-directory "../snippets")
+                                        ;(yas/load-directory "../snippets")
 (yas-global-mode 1)
 
 ;; highlight line mode
 (hl-line-toggle-when-idle)
 
+;; Configuring bs
+(require 'bs)
+(global-set-key (kbd "C-x C-b") 'bs-show)
+
+;; Smex
+(require 'smex)
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+;; This is the old M-x.
+;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+
 ;; ac-dabbrev configuratio
 (require 'ac-dabbrev)
 (setq ac-sources
-     (list ac-source-dabbrev))
+      (list ac-source-dabbrev))
 (global-set-key (kbd "<backtab>") 'dabbrev-expand)
 
 
 ;; IDO configurations
 (ido-mode t)
+(ido-everywhere t)
+(setq ido-enable-flex-matching t)
 
 ;; Workgroups configurations
 (workgroups-mode t)
@@ -60,8 +74,19 @@
 
 ;; HideShow
 (load-library "hideshow")
+
+(defun toggle-selective-display (column)
+  (interactive "P")
+  (set-selective-display
+   (or column
+       (unless selective-display
+         (1+ (current-column))))))
+
 (global-set-key (kbd "C-\-") 'hs-toggle-hiding)
 (global-set-key (kbd "C-\\") 'toggle-selective-display)
+
+;; replace strings
+(global-set-key (kbd "C-c C-s") 'replace-string)
 
 ;; sr-speedbar configuration
 (global-set-key (kbd "\C-c ]") 'sr-speedbar-toggle)
@@ -83,11 +108,11 @@
   '(progn
      (color-theme-initialize)
      (color-theme-tomorrow-night) ;;-eighties)
-))
+     ))
 
-;(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-;(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-;(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+                                        ;(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+                                        ;(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+                                        ;(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 
 ;; multiple cursor configurations
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)

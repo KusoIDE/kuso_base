@@ -26,7 +26,7 @@ Credits:
 \tBehnam Ahmad Khan Beigi (b3hnam)
 \tNima Nazari (niman)
 \tDanial Parsi (intuxticated)
-
+\tKeyvan Hedayati (k1-hedayati)
 "
   "About Kuso IDE")
 
