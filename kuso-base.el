@@ -64,9 +64,20 @@
 
 
 ;; IDO configurations
+(require 'flx-ido)
 (ido-mode t)
 (ido-everywhere t)
+(flx-ido-mode 1)
+(setq ido-use-faces nil)
+; If don't want to use the flx's highlights you can turn them off like this
+; (setq flx-ido-use-faces nil)
+
 (setq ido-enable-flex-matching t)
+
+
+;; Projectile
+(projectile-global-mode)
+(setq projectile-enable-caching t)
 
 ;; Workgroups configurations
 (workgroups-mode t)
@@ -116,7 +127,7 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-tomorrow-night) ;;-eighties)
+     (color-theme-monokai)
      ))
 
                                         ;(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
