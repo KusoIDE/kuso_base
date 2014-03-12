@@ -35,10 +35,10 @@
 (if (eq (file-exists-p (concat default-directory "../snippets")) nil)
     (make-directory (concat default-directory "../snippets"))
   )
-
-(setq yas-snippet-dirs (concat default-directory "../snippets"))
-(cons "../snippets" yas-snippet-dirs)
-                                        ;(yas/load-directory "../snippets")
+(setq yas-snippet-dirs (list (concat default-directory "../snippets")
+                         (concat default-directory "../yasnippet/yasmate/snippets")
+                         (concat default-directory "../yasnippet/snippets")))
+;(cons "../snippets" yas-snippet-dirs)
 (yas-global-mode 1)
 
 ;; highlight line mode
@@ -80,7 +80,7 @@
 (setq projectile-enable-caching t)
 
 ;; Workgroups configurations
-(workgroups-mode t)
+;(workgroups-mode t)
 
 
 ;; HideShow
