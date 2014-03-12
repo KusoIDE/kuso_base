@@ -130,10 +130,6 @@
      (color-theme-monokai)
      ))
 
-                                        ;(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-                                        ;(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-                                        ;(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-
 ;; multiple cursor configurations
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -181,6 +177,27 @@
 (load-file (concat default-directory "kuso-about.el"))
 (load-file (concat default-directory "kuso-dpaste.el"))
 (load-file (concat default-directory "session-management.el"))
+
+
+
+;; highlight indents
+(require 'highlight-indentation)
+;; TODO: move these to a theme
+(set-face-background 'highlight-indentation-face "#383a30")
+(set-face-background 'highlight-indentation-current-column-face "#494d38")
+(add-hook 'ruby-mode-hook 'highlight-indentation-mode)
+
+;; Power Line
+(require 'powerline)
+
+(setq powerline-arrow-shape 'arrow)   ;; the default
+(setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
+(setq powerline-arrow-shape 'arrow14) ;; best for small fonts
+(custom-set-faces
+ '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
+ '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
+(setq powerline-color1 "grey22")
+(setq powerline-color2 "grey40")
 
 
 (provide 'kuso-base)
