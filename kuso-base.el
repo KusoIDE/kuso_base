@@ -30,19 +30,20 @@
 (setq tramp-default-method "ssh")
 
 ;; Yasnippet configurations
-(add-to-list 'load-path (concat default-directory "../yasnippet"))
+
+;(add-to-list 'load-path (concat default-directory "../yasnippet"))
 
 (if (eq (file-exists-p (concat default-directory "../snippets")) nil)
     (make-directory (concat default-directory "../snippets"))
   )
 (setq yas-snippet-dirs (list (concat default-directory "../snippets")
-                         (concat default-directory "../yasnippet/yasmate/snippets")
-                         (concat default-directory "../yasnippet/snippets")))
-;(cons "../snippets" yas-snippet-dirs)
+                             (concat default-directory "../yasnippet/yasmate/snippets")
+                             (concat default-directory "../yasnippet/snippets")))
+                                        ;(cons "../snippets" yas-snippet-dirs)
 (yas-global-mode 1)
 
 ;; highlight line mode
-(hl-line-toggle-when-idle)
+;(hl-line-toggle-when-idle)
 
 ;; Configuring bs
 (require 'bs)
@@ -65,6 +66,7 @@
 
 ;; IDO configurations
 (require 'flx-ido)
+(require 'ido-vertical-mode)
 (ido-mode t)
 (ido-everywhere t)
 (flx-ido-mode 1)
@@ -73,7 +75,7 @@
 ; (setq flx-ido-use-faces nil)
 
 (setq ido-enable-flex-matching t)
-
+(ido-vertical-mode 1)
 
 ;; Projectile
 (projectile-global-mode)
@@ -85,22 +87,20 @@
 
 ;; HideShow
 (load-library "hideshow")
-
 (defun toggle-selective-display (column)
-      (interactive "P")
-      (set-selective-display
-       (or column
-           (unless selective-display
-             (1+ (current-column))))))
-
+  (interactive "P")
+  (set-selective-display
+   (or column
+       (unless selective-display
+         (1+ (current-column))))))
 (defun toggle-hiding (column)
-      (interactive "P")
-      (if hs-minor-mode
-          (if (condition-case nil
-                  (hs-toggle-hiding)
-                (error t))
-              (hs-show-all))
-        (toggle-selective-display column)))
+  (interactive "P")
+  (if hs-minor-mode
+      (if (condition-case nil
+              (hs-toggle-hiding)
+            (error t))
+          (hs-show-all))
+    (toggle-selective-display column)))
 
 (global-set-key (kbd "C-\-") 'toggle-hiding)
 (global-set-key (kbd "C-\\") 'toggle-selective-display)
@@ -145,7 +145,11 @@
 (scroll-bar-mode -1)
 (setq x-select-enable-clipboard t)
 (column-number-mode t)
+
+;; linum mode
 (global-linum-mode)
+(setq linum-format " %d ")
+
 (menu-bar-mode -1)
 (show-paren-mode t)
 (autopair-global-mode t)
@@ -181,21 +185,18 @@
 
 
 ;; highlight indents
-(require 'highlight-indentation)
+;(require 'highlight-indentation)
 ;; TODO: move these to a theme
-(set-face-background 'highlight-indentation-face "#383a30")
-(set-face-background 'highlight-indentation-current-column-face "#494d38")
-(add-hook 'ruby-mode-hook 'highlight-indentation-mode)
+;(set-face-background 'highlight-indentation-face "#383a30")
+;(set-face-background 'highlight-indentation-current-column-face "#494d38")
+;(add-hook 'ruby-mode-hook 'highlight-indentation-mode)
 
 ;; Power Line
 (require 'powerline)
 
-(setq powerline-arrow-shape 'arrow)   ;; the default
-(setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
+;(setq powerline-arrow-shape 'half)   ;; the default
+;(setq powerline-arrow-shape 'curve)   ;; give your mode-line curves
 (setq powerline-arrow-shape 'arrow14) ;; best for small fonts
-(custom-set-faces
- '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
- '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
 
