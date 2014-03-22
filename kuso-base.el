@@ -1,5 +1,5 @@
 ;;   Kuso IDE
-;;    Copyright (C) 2010-2013  Sameer Rahmani <lxsameer@gnu.org>
+;;    Copyright (C) 2010-2014  Sameer Rahmani <lxsameer@gnu.org>
 ;;
 ;;    This program is free software: you can redistribute it and/or modify
 ;;    it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@
     (make-directory (concat default-directory "../snippets"))
   )
 (setq yas-snippet-dirs (list (concat default-directory "../snippets")
+                             (concat default-directory "../kuso-snippets/snippets")
                              (concat default-directory "../yasnippet/yasmate/snippets")
                              (concat default-directory "../yasnippet/snippets")))
                                         ;(cons "../snippets" yas-snippet-dirs)
@@ -118,6 +119,18 @@
 (global-set-key (kbd "\C-c m") 'menu-bar-mode)
 
 
+;; Indentation ----------------------------------------------
+;; Don't allow tab as indent
+(setq-default indent-tabs-mode nil)
+;; Default indent width
+(setq tab-width 4)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(require 'indent-guide)
+(setq indent-guide-char (char-to-string ?\u205e))
+(indent-guide-global-mode)
+
+
 ;; theme configuration --------------------------------------
 ;; TODO: create a default theme so user can easily change it
 (eval-after-load "color-theme"
@@ -152,17 +165,6 @@
 (autopair-global-mode t)
 (cua-selection-mode t)
 
-;; Indentation ----------------------------------------------
-;; Don't allow tab as indent
-(setq-default indent-tabs-mode nil)
-;; Default indent width
-(setq tab-width 4)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(require 'indent-guide)
-(setq indent-guide-char (char-to-string ?\u205e))
-(indent-guide-global-mode)
-
 ;; Backup files ---------------------------------------------
 ;; Put them in one nice place if possible
 (if (file-directory-p "~/.backup")
@@ -186,6 +188,7 @@
 (load-file (concat default-directory "kuso-about.el"))
 (load-file (concat default-directory "kuso-dpaste.el"))
 (load-file (concat default-directory "session-management.el"))
+(load-file (concat default-directory "custom.el"))
 
 
 ;; Power Line -----------------------------------------------
@@ -202,7 +205,8 @@
 (global-set-key (kbd "\C-c q") 'project-explorer-open)
 
 (global-git-gutter-mode t)
-(setq git-gutter-fr:side 'right-fringe)
 
-;(set-face-foreground 'indent-guide-face "#eeff00")
+;(if kuso-workspace (cd kuso-workspace))
+(set-face-foreground 'indent-guide-face "#bbb")
+
 (provide 'kuso-base)
