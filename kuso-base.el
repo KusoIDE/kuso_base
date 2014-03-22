@@ -15,7 +15,7 @@
 ;;    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 (message "Initializing 'kuso-base' plugin.")
 
-;; Autocomplete configurations
+;; Autocomplete configurations -----------------------------------
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories (concat default-directory "../ac-dict"))
 (ac-config-default)
@@ -26,11 +26,10 @@
 
 (global-auto-complete-mode t)
 
-;; Tramp configuration
+;; Tramp configuration ---------------------------------------------
 (setq tramp-default-method "ssh")
 
-;; Yasnippet configurations
-
+;; Yasnippet configurations ---------------------------------------
 ;(add-to-list 'load-path (concat default-directory "../yasnippet"))
 
 (if (eq (file-exists-p (concat default-directory "../snippets")) nil)
@@ -42,14 +41,11 @@
                                         ;(cons "../snippets" yas-snippet-dirs)
 (yas-global-mode 1)
 
-;; highlight line mode
-;(hl-line-toggle-when-idle)
-
-;; Configuring bs
+;; Configuring bs -------------------------------------------------
 (require 'bs)
 (global-set-key (kbd "C-x C-b") 'bs-show)
 
-;; Smex
+;; Smex -----------------------------------------------------------
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
@@ -57,14 +53,14 @@
 ;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 
-;; ac-dabbrev configuratio
+;; ac-dabbrev configuratio ----------------------------------------
 (require 'ac-dabbrev)
 (setq ac-sources
       (list ac-source-dabbrev))
 (global-set-key (kbd "<backtab>") 'dabbrev-expand)
 
 
-;; IDO configurations
+;; IDO configurations ---------------------------------------------
 (require 'flx-ido)
 (require 'ido-vertical-mode)
 (ido-mode t)
@@ -77,15 +73,15 @@
 (setq ido-enable-flex-matching t)
 (ido-vertical-mode 1)
 
-;; Projectile
+;; Projectile -----------------------------------------------------
 (projectile-global-mode)
 (setq projectile-enable-caching t)
 
-;; Workgroups configurations
+;; Workgroups configurations --------------------------------------
 ;(workgroups-mode t)
 
 
-;; HideShow
+;; HideShow -------------------------------------------------------
 (load-library "hideshow")
 (defun toggle-selective-display (column)
   (interactive "P")
@@ -122,7 +118,7 @@
 (global-set-key (kbd "\C-c m") 'menu-bar-mode)
 
 
-;; theme configuration
+;; theme configuration --------------------------------------
 ;; TODO: create a default theme so user can easily change it
 (eval-after-load "color-theme"
   '(progn
@@ -130,12 +126,13 @@
      (color-theme-monokai)
      ))
 
+;; Multiple cursor -----------------------------------------
 ;; multiple cursor configurations
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-SPC ") 'mc/mark-all-like-this)
 
-;; expand-region
+;; expand-region -------------------------------------------
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 
@@ -148,17 +145,25 @@
 
 ;; linum mode
 (global-linum-mode)
-(setq linum-format " %d ")
+(setq linum-format " %4d ")
 
 (menu-bar-mode -1)
 (show-paren-mode t)
 (autopair-global-mode t)
 (cua-selection-mode t)
 
+;; Indentation ----------------------------------------------
+;; Don't allow tab as indent
 (setq-default indent-tabs-mode nil)
+;; Default indent width
+(setq tab-width 4)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; Backup files
+(require 'indent-guide)
+(setq indent-guide-char (char-to-string ?\u205e))
+(indent-guide-global-mode)
+
+;; Backup files ---------------------------------------------
 ;; Put them in one nice place if possible
 (if (file-directory-p "~/.backup")
     (setq backup-directory-alist '(("." . "~/.backup")))
@@ -183,15 +188,7 @@
 (load-file (concat default-directory "session-management.el"))
 
 
-
-;; highlight indents
-;(require 'highlight-indentation)
-;; TODO: move these to a theme
-;(set-face-background 'highlight-indentation-face "#383a30")
-;(set-face-background 'highlight-indentation-current-column-face "#494d38")
-;(add-hook 'ruby-mode-hook 'highlight-indentation-mode)
-
-;; Power Line
+;; Power Line -----------------------------------------------
 (require 'powerline)
 
 ;(setq powerline-arrow-shape 'half)   ;; the default
@@ -200,8 +197,12 @@
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
 
-;; Project-explorer
+;; Project-explorer -----------------------------------------
 (setq pe/width 30)
 (global-set-key (kbd "\C-c q") 'project-explorer-open)
 
+(global-git-gutter-mode t)
+(setq git-gutter-fr:side 'right-fringe)
+
+;(set-face-foreground 'indent-guide-face "#eeff00")
 (provide 'kuso-base)
