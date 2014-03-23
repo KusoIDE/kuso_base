@@ -205,8 +205,6 @@
 (global-set-key (kbd "\C-c q") 'project-explorer-open)
 
 (global-git-gutter-mode t)
-
-;(if kuso-workspace (cd kuso-workspace))
 (set-face-foreground 'indent-guide-face "#bbb")
 
 (provide 'kuso-base)
