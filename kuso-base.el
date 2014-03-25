@@ -15,32 +15,8 @@
 ;;    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 (message "Initializing 'kuso-base' plugin.")
 
-;; Autocomplete configurations -----------------------------------
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (concat default-directory "../ac-dict"))
-(ac-config-default)
-
-;; Remove return key from completion map
-(define-key ac-completing-map "\r" nil)
-(define-key ac-completing-map [return] nil)
-
-(global-auto-complete-mode t)
-
 ;; Tramp configuration ---------------------------------------------
 (setq tramp-default-method "ssh")
-
-;; Yasnippet configurations ---------------------------------------
-;(add-to-list 'load-path (concat default-directory "../yasnippet"))
-
-;(if (eq (file-exists-p (concat default-directory "../snippets")) nil)
-;    (make-directory (concat default-directory "../snippets"))
-;  )
-(setq yas-snippet-dirs (list (concat default-directory "../snippets")
-                             (concat default-directory "../kuso-snippets/snippets")
-                             (concat default-directory "../yasnippet/yasmate/snippets")
-                             (concat default-directory "../yasnippet/snippets")))
-                                        ;(cons "../snippets" yas-snippet-dirs)
-(yas-global-mode 1)
 
 ;; Configuring bs -------------------------------------------------
 (require 'bs)
@@ -73,11 +49,6 @@
 
 (setq ido-enable-flex-matching t)
 (ido-vertical-mode 1)
-
-;; Projectile -----------------------------------------------------
-(projectile-global-mode)
-(setq projectile-enable-caching t)
-
 ;; Workgroups configurations --------------------------------------
 ;(workgroups-mode t)
 
@@ -126,11 +97,6 @@
 (setq tab-width 4)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(require 'indent-guide)
-(setq indent-guide-char (char-to-string ?\u205e))
-(indent-guide-global-mode)
-
-
 ;; theme configuration --------------------------------------
 ;; TODO: create a default theme so user can easily change it
 (eval-after-load "color-theme"
@@ -162,7 +128,6 @@
 
 (menu-bar-mode -1)
 (show-paren-mode t)
-(autopair-global-mode t)
 (cua-selection-mode t)
 
 ;; Backup files ---------------------------------------------
@@ -199,12 +164,5 @@
 (setq powerline-arrow-shape 'arrow14) ;; best for small fonts
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
-
-;; Project-explorer -----------------------------------------
-(setq pe/width 30)
-(global-set-key (kbd "\C-c q") 'project-explorer-open)
-
-(global-git-gutter-mode t)
-(set-face-foreground 'indent-guide-face "#bbb")
 
 (provide 'kuso-base)
