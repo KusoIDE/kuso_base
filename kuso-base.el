@@ -30,13 +30,6 @@
 ;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 
-;; ac-dabbrev configuratio ----------------------------------------
-(require 'ac-dabbrev)
-(setq ac-sources
-      (list ac-source-dabbrev))
-(global-set-key (kbd "<backtab>") 'dabbrev-expand)
-
-
 ;; IDO configurations ---------------------------------------------
 (require 'flx-ido)
 (require 'ido-vertical-mode)
