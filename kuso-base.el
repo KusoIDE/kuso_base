@@ -47,37 +47,16 @@
 
 
 ;; HideShow -------------------------------------------------------
-(load-library "hideshow")
-(defun toggle-selective-display (column)
-  (interactive "P")
-  (set-selective-display
-   (or column
-       (unless selective-display
-         (1+ (current-column))))))
-(defun toggle-hiding (column)
-  (interactive "P")
-  (if hs-minor-mode
-      (if (condition-case nil
-              (hs-toggle-hiding)
-            (error t))
-          (hs-show-all))
-    (toggle-selective-display column)))
+(global-set-key (kbd "C-\-") 'hs-toggle-hiding)
+(hs-minor-mode)
 
-(global-set-key (kbd "C-\-") 'toggle-hiding)
-(global-set-key (kbd "C-\\") 'toggle-selective-display)
 
 ;; replace strings
-(global-set-key (kbd "C-c C-s") 'replace-string)
-
-;; sr-speedbar configuration
-(global-set-key (kbd "\C-c ]") 'sr-speedbar-toggle)
-
-;; Setup flymake
-(add-hook 'find-file-hook 'flymake-find-file-hook)
+(global-set-key (kbd "C-c M-s") 'replace-string)
 
 ;; flymake shortkeys
-(global-set-key (kbd "\C-x a") 'flymake-display-err-menu-for-current-line)
-(global-set-key (kbd "\C-x p") 'flymake-goto-next-error)
+(global-set-key (kbd "\C-x a") 'flycheck-next-error)
+(global-set-key (kbd "\C-x C-a") 'flycheck-previous-error)
 
 ;; Basic Key bindings
 (global-set-key (kbd "\C-c m") 'menu-bar-mode)
