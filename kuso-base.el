@@ -15,6 +15,13 @@
 ;;    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 (message "Initializing 'kuso-base' plugin.")
 
+;; Initial configuration ---------------------------------------------
+;; Remove splash screen
+(setq inhibit-splash-screen t)
+;; scratch should be scratch
+(setq initial-scratch-message nil)
+
+
 ;; Tramp configuration ---------------------------------------------
 (setq tramp-default-method "ssh")
 
