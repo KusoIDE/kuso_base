@@ -103,7 +103,7 @@
 
 ;; linum mode
 (global-linum-mode)
-(setq linum-format " %4d ")
+(setq linum-format " %3d ")
 
 (menu-bar-mode -1)
 (show-paren-mode t)
