@@ -144,4 +144,27 @@
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
 
+;; Cleanup Buffer -------------------------------------------
+(defun cleanup-buffer-safe ()
+  "Perform a bunch of safe operations on the whitespace content of a buffer.
+Does not indent buffer, because it is used for a before-save-hook, and that
+might be bad.
+   http://whattheemacsd.com/buffer-defuns.el-01.html"
+  (interactive)
+  (untabify (point-min) (point-max))
+  (delete-trailing-whitespace)
+  (set-buffer-file-coding-system 'utf-8))
+
+(defun iwb ()
+  "Indent Whole Buffer, Fix indention 
+  Perform a bunch of operations on the whitespace content of a buffer.
+   Including indent-buffer, which should not be called automatically on save.
+   http://whattheemacsd.com/buffer-defuns.el-01.html"
+  (interactive)
+  (cleanup-buffer-safe)
+  (indent-region (point-min) (point-max)))
+
+;; Various superfluous white-space. Just say no.
+(add-hook 'before-save-hook 'cleanup-buffer-safe)
+
 (provide 'kuso-base)
