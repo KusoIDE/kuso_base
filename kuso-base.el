@@ -144,4 +144,23 @@
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
 
+;; Keep home clean ------------------------------------------
+;; Place all backup copies of files in a common location
+;; Original idea from https://shahinism.github.io/posts/blog13920125yn-ymkhs-dwst-dshtny-backuph-w-autosaveh.html
+;; TODO: Fix path to point out to current emacs directory
+(make-directory "~/.emacs.d/autosaves/" t)
+(make-directory "~/.emacs.d/backups/" t)
+
+(setq auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
+(setq backup-by-copying-when-linked t)  ; Copy linked files, don't rename.
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+(setq desktop-base-file-name "emacs-desktop")
+(setq desktop-base-lock-name "emacs-desktop-lock")
+(setq desktop-recover-location user-emacs-directory)
+(setq recentf-save-file (expand-file-name "recentf" user-emacs-directory))
+(setq save-place-file (expand-file-name "saved-places" user-emacs-directory))
+(setq smex-save-file (expand-file-name "smex-items" user-emacs-directory))
+(setq tramp-auto-save-directory (expand-file-name "autosaves/" user-emacs-directory))
+
+
 (provide 'kuso-base)
