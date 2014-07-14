@@ -134,6 +134,16 @@
 (load-file (concat default-directory "session-management.el"))
 (load-file (concat default-directory "custom.el"))
 
+;; Key Chord ------------------------------------------------
+(require 'key-chord)
+(key-chord-mode 1)
+
+(key-chord-define-global "hj"     'undo)
+(key-chord-define-global "kl"     'right-word)
+(key-chord-define-global "sd"     'left-word)
+(key-chord-define-global "m,"     'forward-paragraph)
+(key-chord-define-global "p["     'backward-paragraph)
+
 
 ;; Power Line -----------------------------------------------
 (require 'powerline)
