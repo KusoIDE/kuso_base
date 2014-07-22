@@ -15,6 +15,17 @@
 ;;    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 (message "Initializing 'kuso-base' plugin.")
 
+;; Setup PATH -------------------------------------------------------
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+
+(setq-default sh-basic-offset 2)
+(setq-default sh-indentation 2)
+
+
 ;; Initial configuration ---------------------------------------------
 ;; Remove splash screen
 (setq inhibit-splash-screen t)
