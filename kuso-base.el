@@ -145,6 +145,9 @@
 (load-file (concat default-directory "session-management.el"))
 (load-file (concat default-directory "custom.el"))
 
+;; Inflections utility
+(load-file (concat default-directory "inflections.el"))
+
 ;; Key Chord ------------------------------------------------
 (require 'key-chord)
 (key-chord-mode 1)
