@@ -1,21 +1,37 @@
-;;   Kuso IDE
-;;    Copyright (C) 2010-2014  Sameer Rahmani <lxsameer@gnu.org>
-;;
-;;    This program is free software: you can redistribute it and/or modify
-;;    it under the terms of the GNU General Public License as published by
-;;    the Free Software Foundation, either version 3 of the License, or
-;;    any later version.
-;;
-;;    This program is distributed in the hope that it will be useful,
-;;    but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;;    GNU General Public License for more details.
-;;
-;;    You should have received a copy of the GNU General Public License
-;;    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;;; kuso-base.el --- Basic configuration of Kuso IDE
+
+;; Copyright (C) 2012-2014 Sameer Rahmani <lxsameer@gnu.org>
+
+;; Author: Sameer Rahmani <lxsameer@gnu.org>
+;; Keywords: lisp kuso IDE base
+;; Version: 1.0.0
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; This module contains the needed configuration for Kuso IDE very basic
+;; functionality
+
+;;; Code:
+
+;; code goes here
 (message "Initializing 'kuso-base' plugin.")
 
-;; Setup PATH -------------------------------------------------------
+;; Shell Confs -------------------------------------------------------
+
+;; Setup PATH
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
     (setenv "PATH" path-from-shell)
@@ -27,8 +43,10 @@
 
 
 ;; Initial configuration ---------------------------------------------
+
 ;; Remove splash screen
 (setq inhibit-splash-screen t)
+
 ;; scratch should be scratch
 (setq initial-scratch-message nil)
 
@@ -41,9 +59,9 @@
 (global-set-key (kbd "C-x C-b") 'bs-show)
 
 ;; Smex -----------------------------------------------------------
-(require 'smex)
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
+;(require 'smex)
+;(smex-initialize)
+;(global-set-key (kbd "M-x") 'smex)
 ;; This is the old M-x.
 ;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
@@ -73,8 +91,9 @@
 (global-set-key (kbd "C-c M-s") 'replace-string)
 
 ;; flymake shortkeys
-(global-set-key (kbd "\C-x a") 'flycheck-next-error)
-(global-set-key (kbd "\C-x C-a") 'flycheck-previous-error)
+;; FIXME: these belongs to programing plugin
+;(global-set-key (kbd "\C-x a") 'flycheck-next-error)
+;(global-set-key (kbd "\C-x C-a") 'flycheck-previous-error)
 
 ;; Basic Key bindings
 (global-set-key (kbd "\C-c m") 'menu-bar-mode)
@@ -89,11 +108,11 @@
 
 ;; theme configuration --------------------------------------
 ;; TODO: create a default theme so user can easily change it
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-monokai)
-     ))
+;(eval-after-load "color-theme"
+;  '(progn
+;     (color-theme-initialize)
+;     (color-theme-monokai)
+;     ))
 
 ;; Multiple cursor -----------------------------------------
 ;; multiple cursor configurations
@@ -169,3 +188,4 @@
 (setq powerline-color2 "grey40")
 
 (provide 'kuso-base)
+;;; kuso-base.el ends here
