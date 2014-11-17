@@ -1,7 +1,8 @@
 (source gnu)
 (source melpa)
 
-(package-file "TODO")
+(package-file "kuso-base.el")
+(package "kuso-base" "1.0.0" "Kuso Base plugin which contain basic configuration of Kuso"))
 
 (development
  (depends-on "f")
