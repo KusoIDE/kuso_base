@@ -187,5 +187,85 @@
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
 
+;; Do What I Mean --------------------------------------------
+(defun back-to-indentation-or-beginning ()
+  "This function switches the point to before the first non-space character, or if the point is already there it goes to the beginning of the line. "
+  (interactive)
+  (if (= (point) (progn (back-to-indentation) (point)))
+      (beginning-of-line)))
+
+(defun point-in-comment ()
+  "Determine if the point is inside a comment"
+  (interactive)
+  (let ((syn (syntax-ppss)))
+    (and (nth 8 syn)
+         (not (nth 3 syn)))))
+
+(defun end-of-code-or-line+ (arg)
+  "Move to the end of code. If already there, move to the end of line,
+  that is after the possible comment. If at the end of line, move to the
+  end of code.
+  Comments are recognized in any mode that sets syntax-ppss properly."
+  (interactive "P")
+  (let ((eoc (save-excursion
+               (move-end-of-line arg)
+               (while (point-in-comment)
+                 (backward-char))
+               (skip-chars-backward " \t")
+               (point))))
+    (cond ((= (point) eoc)
+           (move-end-of-line arg))
+          (t
+           (move-end-of-line arg)
+           (while (point-in-comment)
+             (backward-char))
+           (skip-chars-backward " \t")))))
+
+;; Thus, ‘M-w’ with no selection copies the current line, ‘C-w’ kills it entirely, and ‘C-a M-w C-y’ duplicates it.
+;; http://www.emacswiki.org/emacs/?action=browse;oldid=SlickCopy;id=WholeLineOrRegion
+(put 'kill-ring-save 'interactive-form
+     '(interactive
+       (if (use-region-p)
+           (list (region-beginning) (region-end))
+         (list (line-beginning-position) (line-beginning-position 2)))))
+
+(put 'kill-region 'interactive-form
+     '(interactive
+       (if (use-region-p)
+           (list (region-beginning) (region-end))
+         (list (line-beginning-position) (line-beginning-position 2)))))
+
+
+;; http://www.emacswiki.org/emacs/DuplicateStartOfLineOrRegion
+(defun duplicate-start-of-line-or-region ()
+  (interactive)
+  (if mark-active
+      (duplicate-region)
+    (duplicate-start-of-line)))
+
+(defun duplicate-start-of-line ()
+  (let ((text (buffer-substring (point)
+                                (beginning-of-thing 'line))))
+    (forward-line)
+    (push-mark)
+    (insert text)
+    (open-line 1)))
+
+(defun duplicate-region ()
+  (let* ((end (region-end))
+         (text (buffer-substring (region-beginning)
+                                 end)))
+    (goto-char end)
+    (insert text)
+    (push-mark end)
+    (setq deactivate-mark nil)
+    (exchange-point-and-mark)))
+
+(global-set-key (kbd "M-;") 'comment-dwim-line)
+(global-set-key (kbd "C-x C-e") 'rename-current-buffer-file)
+(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
+(global-set-key (kbd "C-w") 'kill-region)
+(global-set-key (kbd "M-S-<down>") 'duplicate-start-of-line-or-region)
+
 (provide 'kuso-base)
 ;;; kuso-base.el ends here
